@@ -1,6 +1,6 @@
 CREATE TABLE SECTOR (
     id integer GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    value varchar2(16) NOT NULL,
+    code varchar2(16) NOT NULL,
     order_no integer NOT NULL,
     parent_sector_id integer  NULL,
 
