@@ -2,7 +2,7 @@ CREATE TABLE SECTOR (
     id integer GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     code varchar2(16) NOT NULL,
     order_no integer NOT NULL,
-    parent_sector_id integer  NULL,
+    parent_sector_code varchar2(16) NULL,
 
     created_at date  NOT NULL DEFAULT SYSDATE,
     updated_at date  NULL,

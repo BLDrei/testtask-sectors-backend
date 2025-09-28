@@ -15,23 +15,21 @@ public class SectorRepository {
 
   private static final String FIND_ALL_SECTORS = """
     SELECT
-      s.id,
-      s.value,
+      s.code,
       s.order_no,
-      s.parent_sector_id
+      s.parent_sector_code
     FROM sector s
-    WHERE deleted_at = null
+    WHERE deleted_at is null
     """;
 
   public List<SectorEntity> findAll() {
     return jdbcTemplate.queryForStream(
       FIND_ALL_SECTORS,
-      (rs, rowNum) -> {
+      (rs, _) -> {
         var entity = new SectorEntity();
-        entity.setId(rs.getLong("id"));
-        entity.setValue(rs.getString("value"));
-        entity.setOrderNo(rs.getLong("order_no"));
-        entity.setParentSectorId(rs.getLong("parent_sector_id"));
+        entity.setCode(rs.getString("code"));
+        entity.setOrderNo(rs.getInt("order_no"));
+        entity.setParentSectorCode(rs.getString("parent_sector_code"));
         return entity;
       }
     ).toList();
