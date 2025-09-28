@@ -48,7 +48,7 @@ public class SectorClassifiersService {
 
   @Scheduled(fixedDelay = THREE_MINUTES)
   @CacheEvict(value = {"sectorsToSubSectorsRelation"})
-  public void clearSectorsToSubSectorsRelation() {
+  public void clearCache() {
     log.debug("Sectors to sub-sectors relation cache cleared");
   }
 }

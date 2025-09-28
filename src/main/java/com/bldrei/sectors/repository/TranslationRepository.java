@@ -1,6 +1,7 @@
 package com.bldrei.sectors.repository;
 
 import com.bldrei.sectors.entity.TranslationEntity;
+import com.bldrei.sectors.i18n.Language;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -19,21 +20,22 @@ public class TranslationRepository {
       t.language,
       t.translation
     FROM translation t
-    WHERE deleted_at = null
+    WHERE deleted_at is null
     AND t.translation_group = ?
+    AND t.language = ?
     """;
 
-  public List<TranslationEntity> findAllByTranslationGroup(String translationGroup) {
+  public List<TranslationEntity> findAllByTranslationGroupAndLanguage(String translationGroup, Language language) {
     return jdbcTemplate.queryForStream(
       FIND_ALL_TRANSLATIONS_BY_GROUP,
-      (rs, rowNum) -> {
+      (rs, _) -> {
         var entity = new TranslationEntity();
         entity.setTranslationKey(rs.getString("translation_key"));
         entity.setLanguage(rs.getString("language"));
         entity.setTranslation(rs.getString("translation"));
         return entity;
       },
-      translationGroup
+      translationGroup, language.name()
     ).toList();
   }
 }

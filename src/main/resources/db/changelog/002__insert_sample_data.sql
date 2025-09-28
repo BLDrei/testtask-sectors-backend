@@ -159,3 +159,9 @@ INSERT INTO translation (translation_group, translation_key, language, translati
 INSERT INTO translation (translation_group, translation_key, language, translation) VALUES ('sector', '114', 'ENG', 'Rail');
 INSERT INTO translation (translation_group, translation_key, language, translation) VALUES ('sector', '112', 'ENG', 'Road');
 INSERT INTO translation (translation_group, translation_key, language, translation) VALUES ('sector', '113', 'ENG', 'Water');
+
+INSERT INTO translation (translation_group, translation_key, language, translation) VALUES ('person-sector-form', 'enter-name-and-pick-sectors', 'ENG', 'Please enter your name and pick the Sectors you are currently involved in.');
+INSERT INTO translation (translation_group, translation_key, language, translation) VALUES ('person-sector-form', 'name', 'ENG', 'Name');
+INSERT INTO translation (translation_group, translation_key, language, translation) VALUES ('person-sector-form', 'sectors', 'ENG', 'Sectors');
+INSERT INTO translation (translation_group, translation_key, language, translation) VALUES ('person-sector-form', 'agree-to-terms', 'ENG', 'Agree to terms');
+INSERT INTO translation (translation_group, translation_key, language, translation) VALUES ('person-sector-form', 'save-form', 'ENG', 'Save');
