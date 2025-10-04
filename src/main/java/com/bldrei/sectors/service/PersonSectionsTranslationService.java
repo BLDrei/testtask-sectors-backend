@@ -19,7 +19,7 @@ import static javax.management.timer.Timer.ONE_MINUTE;
 public class PersonSectionsTranslationService {
   private final TranslationService translationService;
 
-  private static final long THREE_MINUTES = 3 * ONE_MINUTE;
+  private static final long TEN_MINUTES = 10 * ONE_MINUTE;
 
   @Cacheable("personSectorsFormTranslations")
   public TranslationsResponse getPersonSectorsFormTranslations(Language language) {
@@ -29,7 +29,7 @@ public class PersonSectionsTranslationService {
     return new TranslationsResponse(allTranslations);
   }
 
-  @Scheduled(fixedDelay = THREE_MINUTES)
+  @Scheduled(fixedDelay = TEN_MINUTES)
   @CacheEvict(value = {"personSectorsFormTranslations"})
   public void clearCache() {
     log.debug("Person-sectors form translations cache cleared");

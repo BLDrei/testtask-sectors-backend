@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 @JsonInclude(Include.NON_NULL)
 public record NumericFieldProps<T extends Number>(
+  boolean required,
   T min,
   T max,
   T step

@@ -4,5 +4,4 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 @JsonInclude(Include.NON_NULL)
-public record TextFieldProps(boolean required, Integer minlength, Integer maxlength) implements FormFieldProps {
-}
+public record BooleanFieldProps(boolean required) implements FormFieldProps {}

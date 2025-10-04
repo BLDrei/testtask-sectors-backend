@@ -23,7 +23,7 @@ public class SectorRepository {
     """;
 
   public List<SectorEntity> findAll() {
-    return jdbcTemplate.queryForStream(
+    return jdbcTemplate.query(
       FIND_ALL_SECTORS,
       (rs, _) -> {
         var entity = new SectorEntity();
@@ -32,6 +32,6 @@ public class SectorRepository {
         entity.setParentSectorCode(rs.getString("parent_sector_code"));
         return entity;
       }
-    ).toList();
+    );
   }
 }

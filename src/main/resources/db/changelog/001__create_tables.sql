@@ -6,10 +6,7 @@ CREATE TABLE SECTOR (
 
     created_at date  NOT NULL DEFAULT SYSDATE,
     updated_at date  NULL,
-    deleted_at date  NULL,
-    created_by varchar2(32)  NOT NULL DEFAULT USER,
-    updated_by varchar2(32)  NULL,
-    deleted_by varchar2(32)  NULL
+    deleted_at date  NULL
 );
 
 CREATE TABLE TRANSLATION (
@@ -21,8 +18,31 @@ CREATE TABLE TRANSLATION (
 
     created_at date  NOT NULL DEFAULT SYSDATE,
     updated_at date  NULL,
-    deleted_at date  NULL,
-    created_by varchar2(32)  NOT NULL DEFAULT USER,
-    updated_by varchar2(32)  NULL,
-    deleted_by varchar2(32)  NULL
+    deleted_at date  NULL
+);
+
+CREATE TABLE PERSON (
+    id integer GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    name varchar2(512),
+
+    created_at date  NOT NULL DEFAULT SYSDATE,
+    updated_at date  NULL,
+    deleted_at date  NULL
+);
+
+CREATE TABLE PERSON_SECTOR (
+    id integer GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+
+    person_id integer NOT NULL,
+    CONSTRAINT PERSON_SECTOR_PERSON
+        FOREIGN KEY (person_id)
+            REFERENCES PERSON (id),
+    sector_id integer NOT NULL,
+    CONSTRAINT PERSON_SECTOR_SECTOR
+        FOREIGN KEY (sector_id)
+            REFERENCES SECTOR (id),
+
+    created_at date  NOT NULL DEFAULT SYSDATE,
+    updated_at date  NULL,
+    deleted_at date  NULL
 );

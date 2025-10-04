@@ -22,7 +22,7 @@ import static javax.management.timer.Timer.ONE_MINUTE;
 public class SectorClassifiersService {
   private final SectorRepository sectorRepository;
 
-  private static final long THREE_MINUTES = 3 * ONE_MINUTE;
+  private static final long TEN_MINUTES = 10 * ONE_MINUTE;
 
   @Cacheable("sectorsToSubSectorsRelation")
   public List<SectorEntity> getSectorsToSubSectorsRelation() {
@@ -46,7 +46,7 @@ public class SectorClassifiersService {
     return rootSectorEntries;
   }
 
-  @Scheduled(fixedDelay = THREE_MINUTES)
+  @Scheduled(fixedDelay = TEN_MINUTES)
   @CacheEvict(value = {"sectorsToSubSectorsRelation"})
   public void clearCache() {
     log.debug("Sectors to sub-sectors relation cache cleared");

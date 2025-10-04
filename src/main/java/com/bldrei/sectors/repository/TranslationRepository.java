@@ -26,7 +26,7 @@ public class TranslationRepository {
     """;
 
   public List<TranslationEntity> findAllByTranslationGroupAndLanguage(String translationGroup, Language language) {
-    return jdbcTemplate.queryForStream(
+    return jdbcTemplate.query(
       FIND_ALL_TRANSLATIONS_BY_GROUP,
       (rs, _) -> {
         var entity = new TranslationEntity();
@@ -36,6 +36,6 @@ public class TranslationRepository {
         return entity;
       },
       translationGroup, language.name()
-    ).toList();
+    );
   }
 }
