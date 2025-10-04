@@ -17,9 +17,9 @@ public class PersonSectorsDataValidatorTest extends AbstractValidatorTest<Person
     assertViolationMessagesPerField(
       new PersonSectorsDto(null, null, null),
       Map.of(
-        "name", List.of(ValidationMessages.MISSING_VALUE_MSG),
-        "sectors", List.of(ValidationMessages.MISSING_VALUE_MSG),
-        "agreeToTerms", List.of(ValidationMessages.MISSING_VALUE_MSG)
+        "name", List.of(ValidationMessages.NOT_BLANK_MSG),
+        "sectors", List.of(ValidationMessages.NOT_EMPTY_MSG),
+        "agreeToTerms", List.of(ValidationMessages.MUST_NOT_BE_NULL)
       )
     );
 
@@ -66,12 +66,12 @@ public class PersonSectorsDataValidatorTest extends AbstractValidatorTest<Person
 
     assertViolationMessagesPerField(
       new PersonSectorsDto("Ashley", List.of("1", "   "), true),
-      Map.of("sectors", List.of(ValidationMessages.NOT_BLANK_MSG))
+      Map.of("sectors[1].<list element>", List.of(ValidationMessages.NOT_BLANK_MSG))
     );
 
     assertViolationMessagesPerField(
       new PersonSectorsDto("Ashley", Arrays.asList("1", null), true),
-      Map.of("sectors", List.of(ValidationMessages.SHOULD_NOT_CONTAIN_NULL))
+      Map.of("sectors[1].<list element>", List.of(ValidationMessages.NOT_BLANK_MSG))
     );
 
     assertViolationMessagesPerField(
@@ -89,7 +89,7 @@ public class PersonSectorsDataValidatorTest extends AbstractValidatorTest<Person
 
     assertViolationMessagesPerField(
       new PersonSectorsDto("Ashley", List.of("1"), null),
-      Map.of("agreeToTerms", List.of(ValidationMessages.MISSING_VALUE_MSG))
+      Map.of("agreeToTerms", List.of(ValidationMessages.MUST_NOT_BE_NULL))
     );
 
     assertViolationMessagesPerField(
